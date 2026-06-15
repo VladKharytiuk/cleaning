@@ -1,0 +1,2322 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanPro — Професійна чистка кухні та ванної</title>
+    <meta name="description" content="Професійна чистка кухонь, ванних кімнат та побутової техніки. Використовуємо еко-засоби. Швидко, якісно, з гарантією." />
+    <meta property="og:title" content="CleanPro — Професійна чистка кухні та ванної" />
+    <meta property="og:description" content="Видаляємо жир, накип і забруднення з кухонних поверхонь та техніки. Еко-засоби, виїзд від 2 годин." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="uk_UA" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cobalt: #1a3a5c;
+        --cobalt-dark: #0f2540;
+        --aqua: #00c2b8;
+        --aqua-light: #e0f8f7;
+        --white: #ffffff;
+        --surface: #f5f7fa;
+        --text: #1c1c1e;
+        --text-muted: #6b7280;
+        --border: #e5e8ed;
+        --shadow-sm: 0 2px 8px rgba(26, 58, 92, 0.08);
+        --shadow-md: 0 8px 32px rgba(26, 58, 92, 0.12);
+        --shadow-lg: 0 20px 60px rgba(26, 58, 92, 0.18);
+        --radius: 16px;
+        --radius-sm: 8px;
+        --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background: var(--white);
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      /* ─── NAVBAR ─── */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 0 clamp(16px, 4vw, 60px);
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition);
+      }
+      .nav.scrolled {
+        border-color: var(--border);
+        box-shadow: var(--shadow-sm);
+      }
+      .nav-logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.35rem;
+        color: var(--cobalt);
+        letter-spacing: -0.5px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .nav-logo-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--aqua);
+        display: inline-block;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: clamp(16px, 3vw, 36px);
+        list-style: none;
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color var(--transition);
+        letter-spacing: 0.01em;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--cobalt);
+      }
+      .nav-cta {
+        background: var(--cobalt);
+        color: var(--white) !important;
+        padding: 10px 22px;
+        border-radius: 50px;
+        font-weight: 600 !important;
+        transition:
+          background var(--transition),
+          transform var(--transition),
+          box-shadow var(--transition) !important;
+      }
+      .nav-cta:hover {
+        background: var(--aqua) !important;
+        color: var(--white) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(0, 194, 184, 0.35) !important;
+      }
+      .nav-burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
+      }
+      .nav-burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--cobalt);
+        border-radius: 2px;
+        transition:
+          transform var(--transition),
+          opacity var(--transition);
+      }
+      .nav-mobile {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        padding: 20px clamp(16px, 4vw, 60px) 28px;
+        flex-direction: column;
+        gap: 4px;
+        z-index: 999;
+        box-shadow: var(--shadow-md);
+      }
+      .nav-mobile.open {
+        display: flex;
+      }
+      .nav-mobile a {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+        transition: color var(--transition);
+      }
+      .nav-mobile a:last-child {
+        border-bottom: none;
+      }
+      .nav-mobile a:hover,
+      .nav-mobile a.active {
+        color: var(--cobalt);
+      }
+      .nav-mobile .cta-mob {
+        margin-top: 8px;
+        background: var(--cobalt);
+        color: var(--white) !important;
+        padding: 14px 24px;
+        border-radius: 50px;
+        text-align: center;
+        font-weight: 600 !important;
+        border-bottom: none !important;
+      }
+
+      /* ─── LANGUAGE SWITCHER ─── */
+      .lang-switch {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-left: clamp(10px, 2vw, 24px);
+        border-left: 1px solid var(--border);
+        padding-left: clamp(10px, 2vw, 24px);
+      }
+      .lang-btn {
+        background: none;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: color var(--transition);
+        padding: 4px;
+        font-family: "Inter", sans-serif;
+      }
+      .lang-btn.active,
+      .lang-btn:hover {
+        color: var(--cobalt);
+      }
+      .nav-mobile .lang-switch {
+        margin-top: 12px;
+        border-left: none;
+        padding-left: 0;
+        justify-content: center;
+        border-top: 1px solid var(--border);
+        padding-top: 16px;
+      }
+
+      /* ─── HERO ─── */
+      .hero {
+        min-height: 100svh;
+        padding: 70px clamp(16px, 4vw, 60px) 0;
+        background: var(--cobalt-dark);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+      .hero-bg-circles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .hero-bg-circles::before {
+        content: "";
+        position: absolute;
+        width: clamp(400px, 60vw, 800px);
+        height: clamp(400px, 60vw, 800px);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 194, 184, 0.15) 0%,
+          transparent 70%
+        );
+        top: -20%;
+        right: -10%;
+        animation: pulse-slow 8s ease-in-out infinite alternate;
+      }
+      .hero-bg-circles::after {
+        content: "";
+        position: absolute;
+        width: clamp(250px, 35vw, 500px);
+        height: clamp(250px, 35vw, 500px);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 194, 184, 0.08) 0%,
+          transparent 70%
+        );
+        bottom: 10%;
+        left: -5%;
+        animation: pulse-slow 10s ease-in-out infinite alternate-reverse;
+      }
+      @keyframes pulse-slow {
+        from {
+          transform: scale(1);
+          opacity: 1;
+        }
+        to {
+          transform: scale(1.12);
+          opacity: 0.7;
+        }
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 1320px;
+        margin: 0 auto;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(32px, 5vw, 80px);
+        align-items: center;
+        padding: clamp(40px, 8vh, 100px) 0;
+      }
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0, 194, 184, 0.15);
+        border: 1px solid rgba(0, 194, 184, 0.3);
+        color: var(--aqua);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 50px;
+        margin-bottom: 24px;
+      }
+      .hero-tag-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--aqua);
+        animation: blink 2s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      .hero-h1 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2rem, 5vw, 3.75rem);
+        line-height: 1.08;
+        letter-spacing: -1.5px;
+        color: var(--white);
+        margin-bottom: 24px;
+      }
+      .hero-h1 em {
+        font-style: normal;
+        color: var(--aqua);
+        position: relative;
+      }
+      .hero-h1 em::after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: var(--aqua);
+        border-radius: 2px;
+        opacity: 0.4;
+      }
+      .hero-sub {
+        font-size: clamp(0.95rem, 1.5vw, 1.125rem);
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.7;
+        margin-bottom: 40px;
+        max-width: 480px;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--aqua);
+        color: var(--cobalt-dark);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        padding: 16px 32px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition),
+          background var(--transition);
+        white-space: nowrap;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(0, 194, 184, 0.45);
+        background: #00d4ca;
+      }
+      .btn-primary svg {
+        flex-shrink: 0;
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 500;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: color var(--transition);
+        padding: 16px 8px;
+        white-space: nowrap;
+      }
+      .btn-ghost:hover {
+        color: var(--white);
+      }
+      .btn-ghost svg {
+        flex-shrink: 0;
+      }
+      .hero-stats {
+        display: flex;
+        gap: clamp(20px, 3vw, 40px);
+        margin-top: 52px;
+        padding-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        flex-wrap: wrap;
+      }
+      .hero-stat-val {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.6rem, 3vw, 2.25rem);
+        color: var(--white);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .hero-stat-val span {
+        color: var(--aqua);
+      }
+      .hero-stat-label {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.45);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      /* Hero visual */
+      .hero-visual {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      .hero-visual-core {
+        position: relative;
+        width: clamp(260px, 38vw, 460px);
+        aspect-ratio: 1;
+      }
+      .hero-circle-outer {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 194, 184, 0.2);
+        animation: spin-slow 20s linear infinite;
+      }
+      .hero-circle-outer::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        background: var(--aqua);
+        border-radius: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 12px var(--aqua);
+      }
+      @keyframes spin-slow {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .hero-circle-mid {
+        position: absolute;
+        inset: 14%;
+        border-radius: 50%;
+        border: 1px solid rgba(0, 194, 184, 0.12);
+        animation: spin-slow 14s linear infinite reverse;
+      }
+      .hero-card-main {
+        position: absolute;
+        inset: 22%;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 194, 184, 0.25) 0%,
+          rgba(26, 58, 92, 0.6) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      }
+      .hero-icon-main {
+        font-size: clamp(3rem, 6vw, 5rem);
+        filter: drop-shadow(0 4px 16px rgba(0, 194, 184, 0.4));
+        animation: float 4s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      .hero-badge {
+        position: absolute;
+        background: var(--white);
+        border-radius: 14px;
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: var(--shadow-lg);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--cobalt);
+        white-space: nowrap;
+      }
+      .hero-badge-icon {
+        font-size: 1.1rem;
+      }
+      .hero-badge-1 {
+        top: 5%;
+        right: -8%;
+        animation: badge-float 5s ease-in-out infinite;
+      }
+      .hero-badge-2 {
+        bottom: 10%;
+        left: -10%;
+        animation: badge-float 6s ease-in-out infinite reverse;
+      }
+      @keyframes badge-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .hero-badge-sub {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+
+      /* ─── SECTION BASICS ─── */
+      section {
+        position: relative;
+      }
+      .container {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 clamp(16px, 4vw, 60px);
+      }
+      .section-py {
+        padding: clamp(64px, 10vh, 120px) 0;
+      }
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--aqua);
+        margin-bottom: 16px;
+      }
+      .section-label::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--aqua);
+        border-radius: 1px;
+      }
+      .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.75rem, 4vw, 3rem);
+        line-height: 1.15;
+        letter-spacing: -0.5px;
+        color: var(--cobalt);
+        margin-bottom: 20px;
+      }
+      .section-desc {
+        font-size: clamp(0.9rem, 1.3vw, 1.05rem);
+        color: var(--text-muted);
+        line-height: 1.75;
+        max-width: 560px;
+      }
+
+      /* ─── SERVICES ─── */
+      .services {
+        background: var(--surface);
+      }
+      .services-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 32px;
+        margin-bottom: clamp(40px, 6vh, 72px);
+        flex-wrap: wrap;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+        gap: clamp(16px, 2.5vw, 28px);
+      }
+      .service-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: clamp(24px, 3vw, 36px);
+        border: 1px solid var(--border);
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition),
+          border-color var(--transition);
+        position: relative;
+        overflow: hidden;
+        cursor: default;
+      }
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--aqua), var(--cobalt));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform var(--transition);
+      }
+      .service-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
+        border-color: rgba(0, 194, 184, 0.2);
+      }
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+      .service-icon-wrap {
+        width: 60px;
+        height: 60px;
+        border-radius: 16px;
+        background: var(--aqua-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin-bottom: 20px;
+        transition:
+          background var(--transition),
+          transform var(--transition);
+      }
+      .service-card:hover .service-icon-wrap {
+        background: linear-gradient(135deg, var(--aqua), var(--cobalt));
+        transform: scale(1.08);
+      }
+      .service-name {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--cobalt);
+        margin-bottom: 10px;
+      }
+      .service-desc {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+        margin-bottom: 20px;
+      }
+      .service-price {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: var(--cobalt);
+      }
+      .service-price span {
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: var(--text-muted);
+        font-family: "Inter", sans-serif;
+      }
+
+      /* ─── PROCESS ─── */
+      .process {
+        background: var(--white);
+      }
+      .process-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 100px);
+        align-items: center;
+      }
+      .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .process-step {
+        display: flex;
+        gap: 20px;
+        padding: clamp(20px, 2.5vw, 28px) 0;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        transition: all var(--transition);
+      }
+      .process-step:last-child {
+        border-bottom: none;
+      }
+      .process-step-num {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--surface);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        transition:
+          background var(--transition),
+          color var(--transition);
+      }
+      .process-step.active .process-step-num,
+      .process-step:hover .process-step-num {
+        background: var(--cobalt);
+        color: var(--white);
+      }
+      .process-step-text {
+      }
+      .process-step-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--cobalt);
+        margin-bottom: 6px;
+      }
+      .process-step-desc {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          opacity 0.4s ease;
+        opacity: 0;
+      }
+      .process-step.active .process-step-desc {
+        max-height: 200px;
+        opacity: 1;
+      }
+      .process-visual {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 420px;
+      }
+      .process-visual-card {
+        width: 100%;
+        max-width: 420px;
+        background: linear-gradient(
+          135deg,
+          var(--cobalt) 0%,
+          var(--cobalt-dark) 100%
+        );
+        border-radius: 24px;
+        padding: clamp(28px, 4vw, 48px);
+        color: var(--white);
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+      }
+      .process-visual-card::after {
+        content: "";
+        position: absolute;
+        bottom: -60px;
+        right: -60px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: rgba(0, 194, 184, 0.12);
+      }
+      .process-card-emoji {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+      .process-card-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.35rem;
+        margin-bottom: 12px;
+        line-height: 1.3;
+      }
+      .process-card-text {
+        font-size: 0.875rem;
+        opacity: 0.7;
+        line-height: 1.7;
+      }
+      .process-card-tag {
+        display: inline-block;
+        margin-top: 20px;
+        background: rgba(0, 194, 184, 0.2);
+        color: var(--aqua);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 50px;
+        border: 1px solid rgba(0, 194, 184, 0.3);
+      }
+      .process-visual-dot {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--aqua);
+        opacity: 0.15;
+      }
+      .dot-1 {
+        width: 60px;
+        height: 60px;
+        top: -20px;
+        right: 40px;
+      }
+      .dot-2 {
+        width: 30px;
+        height: 30px;
+        bottom: 30px;
+        right: -10px;
+      }
+
+      /* ─── FEATURES ─── */
+      .features {
+        background: var(--surface);
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+        gap: clamp(16px, 2.5vw, 28px);
+        margin-top: clamp(40px, 6vh, 72px);
+      }
+      .feature-item {
+        background: var(--white);
+        border-radius: var(--radius);
+        padding: clamp(24px, 3vw, 32px);
+        border: 1px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .feature-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .feature-icon {
+        font-size: 2rem;
+        line-height: 1;
+      }
+      .feature-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--cobalt);
+      }
+      .feature-desc {
+        font-size: 0.845rem;
+        color: var(--text-muted);
+        line-height: 1.65;
+        flex: 1;
+      }
+
+      /* ─── TESTIMONIALS ─── */
+      .testimonials {
+        background: var(--cobalt-dark);
+      }
+      .testimonials .section-title {
+        color: var(--white);
+      }
+      .testimonials .section-label {
+        color: var(--aqua);
+      }
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+        gap: clamp(16px, 2.5vw, 28px);
+        margin-top: clamp(40px, 6vh, 64px);
+      }
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        padding: clamp(24px, 3vw, 36px);
+        transition:
+          background var(--transition),
+          transform var(--transition);
+      }
+      .testimonial-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-4px);
+      }
+      .testimonial-stars {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 16px;
+        font-size: 0.9rem;
+      }
+      .testimonial-text {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.75;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testimonial-text::before {
+        content: '"';
+      }
+      .testimonial-text::after {
+        content: '"';
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testimonial-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        background: rgba(0, 194, 184, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .testimonial-name {
+        font-weight: 600;
+        font-size: 0.875rem;
+        color: var(--white);
+      }
+      .testimonial-role {
+        font-size: 0.775rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* ─── CTA ─── */
+      .cta-section {
+        background: var(--white);
+      }
+      .cta-block {
+        background: linear-gradient(
+          130deg,
+          var(--cobalt) 0%,
+          var(--cobalt-dark) 60%,
+          #0a1f38 100%
+        );
+        border-radius: 24px;
+        padding: clamp(40px, 7vw, 80px) clamp(28px, 6vw, 80px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        position: relative;
+        overflow: hidden;
+        flex-wrap: wrap;
+      }
+      .cta-block::before {
+        content: "";
+        position: absolute;
+        right: -80px;
+        top: -80px;
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 194, 184, 0.2) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .cta-block::after {
+        content: "";
+        position: absolute;
+        left: -40px;
+        bottom: -80px;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 194, 184, 0.1) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .cta-text {
+        position: relative;
+        z-index: 1;
+      }
+      .cta-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+        color: var(--white);
+        line-height: 1.2;
+        margin-bottom: 14px;
+        letter-spacing: -0.5px;
+      }
+      .cta-desc {
+        font-size: clamp(0.875rem, 1.3vw, 1rem);
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 440px;
+      }
+      .cta-action {
+        position: relative;
+        z-index: 1;
+        flex-shrink: 0;
+      }
+      .cta-phones {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-end;
+      }
+      .cta-phone {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.1rem, 2.5vw, 1.75rem);
+        color: var(--white);
+        text-decoration: none;
+        letter-spacing: -0.5px;
+        transition: color var(--transition);
+      }
+      .cta-phone:hover {
+        color: var(--aqua);
+      }
+      .cta-phone-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: right;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+      .cta-btn-wrap {
+        margin-top: 20px;
+        text-align: right;
+      }
+      .btn-aqua {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--aqua);
+        color: var(--cobalt-dark);
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 0.875rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition:
+          transform var(--transition),
+          box-shadow var(--transition);
+      }
+      .btn-aqua:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(0, 194, 184, 0.45);
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: #080f1a;
+        padding: clamp(40px, 7vh, 72px) 0 clamp(24px, 4vh, 40px);
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: clamp(28px, 4vw, 60px);
+        margin-bottom: clamp(36px, 6vh, 60px);
+      }
+      .footer-brand {
+      }
+      .footer-logo {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 800;
+        font-size: 1.25rem;
+        color: var(--white);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .footer-about {
+        font-size: 0.845rem;
+        color: rgba(255, 255, 255, 0.4);
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+      .footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .footer-social a {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition:
+          background var(--transition),
+          border-color var(--transition),
+          transform var(--transition);
+      }
+      .footer-social a:hover {
+        background: rgba(0, 194, 184, 0.2);
+        border-color: rgba(0, 194, 184, 0.4);
+        transform: translateY(-2px);
+      }
+      .footer-col-title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: var(--white);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-links a {
+        font-size: 0.845rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+      .footer-links a:hover {
+        color: var(--aqua);
+      }
+      .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+        font-size: 0.845rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-contact-item a {
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+      .footer-contact-item a:hover {
+        color: var(--aqua);
+      }
+      .footer-contact-icon {
+        font-size: 0.9rem;
+        margin-top: 1px;
+      }
+      .footer-bottom {
+        padding-top: clamp(20px, 3vh, 32px);
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .footer-copy {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .footer-policy a {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.25);
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+      .footer-policy a:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      /* ─── SCROLL TO TOP ─── */
+      .scroll-top {
+        position: fixed;
+        bottom: 28px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        background: var(--cobalt);
+        color: var(--white);
+        border: none;
+        border-radius: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        box-shadow: var(--shadow-md);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(12px);
+        transition: all var(--transition);
+        z-index: 900;
+      }
+      .scroll-top.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .scroll-top:hover {
+        background: var(--aqua);
+        transform: translateY(-2px);
+      }
+
+      /* ─── FADE IN ANIMATION ─── */
+      .fade-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .delay-1 {
+        transition-delay: 0.1s;
+      }
+      .delay-2 {
+        transition-delay: 0.2s;
+      }
+      .delay-3 {
+        transition-delay: 0.3s;
+      }
+      .delay-4 {
+        transition-delay: 0.4s;
+      }
+      .delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1024px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-sub {
+          max-width: 100%;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        .hero-stats {
+          justify-content: center;
+        }
+        .hero-visual {
+          order: -1;
+        }
+        .hero-badge-1 {
+          right: 2%;
+        }
+        .hero-badge-2 {
+          left: 2%;
+        }
+        .process-inner {
+          grid-template-columns: 1fr;
+        }
+        .process-visual {
+          order: -1;
+          min-height: auto;
+        }
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-burger {
+          display: flex;
+        }
+        .hero-visual-core {
+          width: clamp(220px, 70vw, 320px);
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .cta-phones {
+          align-items: flex-start;
+        }
+        .cta-btn-wrap {
+          text-align: left;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-stats {
+          gap: 24px;
+        }
+        .hero-badge {
+          display: none;
+        }
+        .btn-primary,
+        .btn-aqua {
+          padding: 14px 24px;
+        }
+        .cta-block {
+          padding: 36px 24px;
+        }
+        .cta-phone {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="nav" id="navbar">
+      <a href="#" class="nav-logo">
+        Clean<span style="color: var(--aqua)">Pro</span>
+        <span class="nav-logo-dot"></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services" data-i18n="nav_services">Послуги</a></li>
+        <li><a href="#process" data-i18n="nav_process">Як ми працюємо</a></li>
+        <li><a href="#features" data-i18n="nav_features">Переваги</a></li>
+        <li><a href="#testimonials" data-i18n="nav_reviews">Відгуки</a></li>
+        <li><a href="#contact" class="nav-cta" data-i18n="nav_cta">Замовити чистку</a></li>
+      </ul>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="uk">UK</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="navMobile">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div class="nav-mobile" id="navMobile">
+      <a href="#services" data-i18n="nav_services">Послуги</a>
+      <a href="#process" data-i18n="nav_process">Як ми працюємо</a>
+      <a href="#features" data-i18n="nav_features">Переваги</a>
+      <a href="#testimonials" data-i18n="nav_reviews">Відгуки</a>
+      <a href="#contact" class="cta-mob" data-i18n="nav_cta">Замовити чистку</a>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="uk">UK</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+      </div>
+    </div>
+
+    <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg-circles"></div>
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-tag fade-up" data-i18n="hero_tag">
+            <span class="hero-tag-dot"></span> Професійна чистка
+          </div>
+          <h1 class="hero-h1 fade-up delay-1" data-i18n="hero_title">
+            Кухня блищить —<br /><em>гарантовано</em>
+          </h1>
+          <p class="hero-sub fade-up delay-2" data-i18n="hero_sub">
+            Видаляємо жир, накип і забруднення з кухонних поверхонь, ванних
+            кімнат, холодильників та побутової техніки. Використовуємо лише
+            безпечні засоби.
+          </p>
+          <div class="hero-actions fade-up delay-3">
+            <a href="#contact" class="btn-primary">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.02z"
+                />
+              </svg>
+              <span data-i18n="hero_btn_primary">Замовити зараз</span>
+            </a>
+            <a href="#services" class="btn-ghost">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+              <span data-i18n="hero_btn_ghost">Дізнатись більше</span>
+            </a>
+          </div>
+          <div class="hero-stats fade-up delay-4">
+            <div>
+              <div class="hero-stat-val">500<span>+</span></div>
+              <div class="hero-stat-label" data-i18n="hero_stat1">Задоволених клієнтів</div>
+            </div>
+            <div>
+              <div class="hero-stat-val">4<span>роки</span></div>
+              <div class="hero-stat-label" data-i18n="hero_stat2">На ринку</div>
+            </div>
+            <div>
+              <div class="hero-stat-val">98<span>%</span></div>
+              <div class="hero-stat-label" data-i18n="hero_stat3">Повторних замовлень</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-up delay-2">
+          <div class="hero-visual-core">
+            <div class="hero-circle-outer"></div>
+            <div class="hero-circle-mid"></div>
+            <div class="hero-card-main">
+              <div class="hero-icon-main">✨</div>
+            </div>
+            <div class="hero-badge hero-badge-1">
+              <span class="hero-badge-icon">🧽</span>
+              <div>
+                <div data-i18n="hero_badge1_title">Без хімії</div>
+                <div class="hero-badge-sub" data-i18n="hero_badge1_sub">Еко засоби</div>
+              </div>
+            </div>
+            <div class="hero-badge hero-badge-2">
+              <span class="hero-badge-icon">⏱</span>
+              <div>
+                <div data-i18n="hero_badge2_title">Від 2 годин</div>
+                <div class="hero-badge-sub" data-i18n="hero_badge2_sub">Швидко і якісно</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="services section-py" id="services">
+      <div class="container">
+        <div class="services-header">
+          <div>
+            <div class="section-label fade-up" data-i18n="sec_services_label">Що ми чистимо</div>
+            <h2 class="section-title fade-up delay-1" data-i18n="sec_services_title">Наші послуги</h2>
+          </div>
+          <p class="section-desc fade-up delay-2" data-i18n="sec_services_desc">
+            Комплексний догляд за всіма поверхнями та приладами у вашій кухні та
+            ванній кімнаті.
+          </p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card fade-up">
+            <div class="service-icon-wrap">🍳</div>
+            <div class="service-name" data-i18n="srv1_name">Кухонні поверхні</div>
+            <p class="service-desc" data-i18n="srv1_desc">
+              Видалення жирових відкладень, нагару та плям з плит, варильних
+              панелей, стільниць і кахлю.
+            </p>
+            <div class="service-price" data-i18n="srv1_price">від 500 грн <span>/ сесія</span></div>
+          </div>
+          <div class="service-card fade-up delay-1">
+            <div class="service-icon-wrap">🚿</div>
+            <div class="service-name" data-i18n="srv2_name">Ванна кімната</div>
+            <p class="service-desc" data-i18n="srv2_desc">
+              Знищення вапняного нальоту, іржі та плісняви з ванн, душових,
+              унітазів та кахлю.
+            </p>
+            <div class="service-price" data-i18n="srv2_price">від 600 грн <span>/ сесія</span></div>
+          </div>
+          <div class="service-card fade-up delay-2">
+            <div class="service-icon-wrap">❄️</div>
+            <div class="service-name" data-i18n="srv3_name">Холодильник</div>
+            <p class="service-desc" data-i18n="srv3_desc">
+              Повне розморожування та дезінфекція всіх відсіків, полиць і
+              ущільнювачів без агресивної хімії.
+            </p>
+            <div class="service-price" data-i18n="srv3_price">від 350 грн <span>/ прилад</span></div>
+          </div>
+          <div class="service-card fade-up delay-3">
+            <div class="service-icon-wrap">🍽️</div>
+            <div class="service-name" data-i18n="srv4_name">Посудомийна машина</div>
+            <p class="service-desc" data-i18n="srv4_desc">
+              Очищення фільтрів, форсунок та внутрішніх стінок. Усунення
+              неприємних запахів і накипу.
+            </p>
+            <div class="service-price" data-i18n="srv4_price">від 280 грн <span>/ прилад</span></div>
+          </div>
+          <div class="service-card fade-up delay-1">
+            <div class="service-icon-wrap">🌀</div>
+            <div class="service-name" data-i18n="srv5_name">Пральна машина</div>
+            <p class="service-desc" data-i18n="srv5_desc">
+              Чистка барабана, манжети, лотка та помпи. Профілактика від накипу
+              та цвілі.
+            </p>
+            <div class="service-price" data-i18n="srv5_price">від 300 грн <span>/ прилад</span></div>
+          </div>
+          <div class="service-card fade-up delay-2">
+            <div class="service-icon-wrap">🔆</div>
+            <div class="service-name" data-i18n="srv6_name">Духовка та мікрохвильовка</div>
+            <p class="service-desc" data-i18n="srv6_desc">
+              Відмочування та видалення запеченого жиру, відновлення блиску скла
+              та поверхонь.
+            </p>
+            <div class="service-price" data-i18n="srv6_price">від 250 грн <span>/ прилад</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process section-py" id="process">
+      <div class="container">
+        <div class="process-inner">
+          <div>
+            <div class="section-label fade-up" data-i18n="proc_label">Простий процес</div>
+            <h2 class="section-title fade-up delay-1" data-i18n="proc_title">Як ми працюємо</h2>
+            <p class="section-desc fade-up delay-2" style="margin-bottom: 36px" data-i18n="proc_desc">
+              Чотири кроки до ідеальної чистоти — без клопоту з вашого боку.
+            </p>
+            <div class="process-steps fade-up delay-3">
+              <div class="process-step active" data-step="0">
+                <div class="process-step-num">01</div>
+                <div class="process-step-text">
+                  <div class="process-step-title" data-i18n="proc_s1_title">Замовлення та оцінка</div>
+                  <div class="process-step-desc" data-i18n="proc_s1_desc">
+                    Ви телефонуєте або пишете нам — ми швидко з'ясовуємо об'єм
+                    роботи, підбираємо майстрів і узгоджуємо зручний час.
+                    Попередній розрахунок вартості одразу.
+                  </div>
+                </div>
+              </div>
+              <div class="process-step" data-step="1">
+                <div class="process-step-num">02</div>
+                <div class="process-step-text">
+                  <div class="process-step-title" data-i18n="proc_s2_title">Підготовка та огляд</div>
+                  <div class="process-step-desc" data-i18n="proc_s2_desc">
+                    Майстер приїжджає у призначений час з усім необхідним
+                    інвентарем та засобами. Проводить швидкий огляд, щоб
+                    уточнити пріоритети та захистити делікатні поверхні.
+                  </div>
+                </div>
+              </div>
+              <div class="process-step" data-step="2">
+                <div class="process-step-num">03</div>
+                <div class="process-step-text">
+                  <div class="process-step-title" data-i18n="proc_s3_title">Глибока чистка</div>
+                  <div class="process-step-desc" data-i18n="proc_s3_desc">
+                    Використовуємо професійне обладнання та перевірені засоби,
+                    які ефективно видаляють жир, накип і бруд, але безпечні для
+                    людей та домашніх тварин.
+                  </div>
+                </div>
+              </div>
+              <div class="process-step" data-step="3">
+                <div class="process-step-num">04</div>
+                <div class="process-step-text">
+                  <div class="process-step-title" data-i18n="proc_s4_title">Перевірка та гарантія</div>
+                  <div class="process-step-desc" data-i18n="proc_s4_desc">
+                    Разом з вами перевіряємо результат. Якщо щось не відповідає
+                    очікуванням — усуваємо безкоштовно. Гарантія якості протягом
+                    7 днів.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="process-visual fade-up delay-2">
+            <div class="process-visual-dot dot-1"></div>
+            <div class="process-visual-dot dot-2"></div>
+            <div class="process-visual-card" id="processCard">
+              <div class="process-card-emoji" id="processEmoji">📞</div>
+              <div class="process-card-title" id="processCardTitle">
+                Замовте зручним способом
+              </div>
+              <div class="process-card-text" id="processCardText">
+                Телефон, месенджер або форма на сайті — ми відповідаємо протягом
+                15 хвилин та підбираємо зручний для вас час.
+              </div>
+              <span class="process-card-tag" id="processCardTag"
+                >Крок 1 з 4</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features section-py" id="features">
+      <div class="container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto">
+          <div class="section-label fade-up" style="justify-content: center" data-i18n="feat_label">
+            Наші переваги
+          </div>
+          <h2 class="section-title fade-up delay-1" data-i18n="feat_title">Чому обирають CleanPro</h2>
+          <p class="section-desc fade-up delay-2" style="margin: 0 auto" data-i18n="feat_desc">
+            Ми не просто прибираємо — ми даємо вам час і спокій.
+          </p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-item fade-up">
+            <div class="feature-icon">🌿</div>
+            <div class="feature-title" data-i18n="feat1_title">Еко-засоби</div>
+            <p class="feature-desc" data-i18n="feat1_desc">
+              Використовуємо сертифіковані засоби без фосфатів і хлору. Безпечно
+              для дітей, алергіків та домашніх тварин.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-1">
+            <div class="feature-icon">🔐</div>
+            <div class="feature-title" data-i18n="feat2_title">Повна безпека</div>
+            <p class="feature-desc" data-i18n="feat2_desc">
+              Всі майстри — перевірені співробітники з офіційним оформленням,
+              застрахованою відповідальністю.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-2">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title" data-i18n="feat3_title">Швидко та якісно</div>
+            <p class="feature-desc" data-i18n="feat3_desc">
+              Кухня під ключ — від 2 годин. Ванна — від 1.5 годин. Не затримуємо
+              вас надовго.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-3">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title" data-i18n="feat4_title">Гарантія 7 днів</div>
+            <p class="feature-desc" data-i18n="feat4_desc">
+              Повернемось і виправимо безкоштовно, якщо протягом тижня виявите
+              будь-які недоліки.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-1">
+            <div class="feature-icon">📅</div>
+            <div class="feature-title" data-i18n="feat5_title">Зручний розклад</div>
+            <p class="feature-desc" data-i18n="feat5_desc">
+              Приймаємо замовлення 7 днів на тиждень, включаючи свята та
+              вихідні. Виїзд у день замовлення.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-2">
+            <div class="feature-icon">💳</div>
+            <div class="feature-title" data-i18n="feat6_title">Зручна оплата</div>
+            <p class="feature-desc" data-i18n="feat6_desc">
+              Готівка, карта або онлайн-переказ — оплачуйте після завершення
+              роботи, коли переконалися в результаті.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-3">
+            <div class="feature-icon">📦</div>
+            <div class="feature-title" data-i18n="feat7_title">Своє обладнання</div>
+            <p class="feature-desc" data-i18n="feat7_desc">
+              Привозимо весь інвентар, щітки, насадки та засоби. Вам не потрібно
+              нічого готувати наперед.
+            </p>
+          </div>
+          <div class="feature-item fade-up delay-4">
+            <div class="feature-icon">🏆</div>
+            <div class="feature-title" data-i18n="feat8_title">4 роки досвіду</div>
+            <p class="feature-desc" data-i18n="feat8_desc">
+              Понад 500 успішно виконаних замовлень. Знаємо, як впоратися навіть
+              із найскладнішими забрудненнями.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials section-py" id="testimonials">
+      <div class="container">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto">
+          <div
+            class="section-label fade-up"
+            style="justify-content: center; color: var(--aqua)"
+            data-i18n="test_label"
+          >
+            Відгуки
+          </div>
+          <h2 class="section-title fade-up delay-1" style="color: var(--white)" data-i18n="test_title">
+            Що кажуть наші клієнти
+          </h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card fade-up">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text" data-i18n="test1_text">
+              Замовляла чистку холодильника та духовки. Результат шокував — все
+              виглядає як нове! Майстер працював акуратно, не залишив жодного
+              сліду хімії. Обов'язково замовлю знову.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👩</div>
+              <div>
+                <div class="testimonial-name" data-i18n="test1_name">Оксана Мельник</div>
+                <div class="testimonial-role" data-i18n="test1_role">Постійна клієнтка, Київ</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card fade-up delay-1">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text" data-i18n="test2_text">
+              Хлопці зробили комплексну чистку кухні перед продажем квартири.
+              Ріелтор сказала, що квартира виглядає значно краще. Продали швидше
+              завдяки цьому. Дякую команді!
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👨</div>
+              <div>
+                <div class="testimonial-name" data-i18n="test2_name">Андрій Ковальчук</div>
+                <div class="testimonial-role" data-i18n="test2_role">Клієнт, Харків</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card fade-up delay-2">
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+            <p class="testimonial-text" data-i18n="test3_text">
+              Вапняний наліт у ванній не бралась нічим уже рік. CleanPro
+              впорались за 2 години! Чистота ідеальна, запаху немає, і головне —
+              ніяких подряпин на акрилі.
+            </p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">👩</div>
+              <div>
+                <div class="testimonial-name" data-i18n="test3_name">Ірина Савченко</div>
+                <div class="testimonial-role" data-i18n="test3_role">Клієнтка, Львів</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section-py" id="contact">
+      <div class="container">
+        <div class="cta-block fade-up">
+          <div class="cta-text">
+            <h2 class="cta-title" data-i18n="cta_title">Готові до ідеальної чистоти?</h2>
+            <p class="cta-desc" data-i18n="cta_desc">
+              Зателефонуйте зараз або напишіть нам — і ми підберемо зручний час
+              для виїзду вже сьогодні.
+            </p>
+          </div>
+          <div class="cta-action">
+            <a href="tel:+380501234567" class="cta-phone"
+              >+38 (050) 123-45-67</a
+            >
+            <div class="cta-phone-label" data-i18n="cta_time">Дзвінки щодня, 8:00 – 21:00</div>
+            <div class="cta-btn-wrap">
+              <a href="https://t.me/cleanpro" class="btn-aqua">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
+                  />
+                </svg>
+                <span data-i18n="cta_btn">Написати в Telegram</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="#" class="footer-logo">
+              Clean<span style="color: var(--aqua)">Pro</span>
+              <span
+                style="
+                  width: 7px;
+                  height: 7px;
+                  border-radius: 50%;
+                  background: var(--aqua);
+                  display: inline-block;
+                "
+              ></span>
+            </a>
+            <p class="footer-about" data-i18n="ftr_about">
+              Професійна чистка кухонь та ванних кімнат. Безпечно, швидко та з
+              гарантією результату.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Написати в Telegram" rel="noopener noreferrer">💬</a>
+              <a href="#" aria-label="Перейти в Instagram" rel="noopener noreferrer">📷</a>
+              <a href="#" aria-label="Написати у Viber" rel="noopener noreferrer">📱</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-col-title" data-i18n="ftr_col1">Послуги</div>
+            <ul class="footer-links">
+              <li><a href="#services" data-i18n="ftr_l1">Кухонні поверхні</a></li>
+              <li><a href="#services" data-i18n="ftr_l2">Ванна кімната</a></li>
+              <li><a href="#services" data-i18n="ftr_l3">Холодильник</a></li>
+              <li><a href="#services" data-i18n="ftr_l4">Посудомийна машина</a></li>
+              <li><a href="#services" data-i18n="ftr_l5">Пральна машина</a></li>
+              <li><a href="#services" data-i18n="ftr_l6">Духовка</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title" data-i18n="ftr_col2">Компанія</div>
+            <ul class="footer-links">
+              <li><a href="#process" data-i18n="ftr_l7">Як ми працюємо</a></li>
+              <li><a href="#features" data-i18n="ftr_l8">Переваги</a></li>
+              <li><a href="#testimonials" data-i18n="ftr_l9">Відгуки</a></li>
+              <li><a href="#" data-i18n="ftr_l10">Фотогалерея</a></li>
+              <li><a href="#" data-i18n="ftr_l11">Блог</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-col-title" data-i18n="ftr_col3">Контакти</div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">📞</span>
+              <a href="tel:+380501234567">+38 (050) 123-45-67</a>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">✉️</span>
+              <a href="mailto:info@cleanpro.ua">info@cleanpro.ua</a>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">⏰</span>
+              <span data-i18n="ftr_time">Пн–Нд: 8:00 – 21:00</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">📍</span>
+              <span data-i18n="ftr_loc">Обслуговуємо Київ та область</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-copy" data-i18n="ftr_copy">© 2025 CleanPro. Всі права захищено.</div>
+          <div class="footer-policy">
+            <a href="#" data-i18n="ftr_policy">Політика конфіденційності</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <button class="scroll-top" id="scrollTop" aria-label="Нагору">↑</button>
+
+    <script>
+      // Navbar scroll
+      const navbar = document.getElementById("navbar");
+      const scrollTop = document.getElementById("scrollTop");
+      window.addEventListener(
+        "scroll",
+        () => {
+          const y = window.scrollY;
+          navbar.classList.toggle("scrolled", y > 20);
+          scrollTop.classList.toggle("visible", y > 400);
+        },
+        { passive: true },
+      );
+      scrollTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" }),
+      );
+
+      // Burger menu
+      const burger = document.getElementById("burger");
+      const navMobile = document.getElementById("navMobile");
+      const mobileLinks = navMobile.querySelectorAll("a");
+      let menuOpen = false;
+
+      burger.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        navMobile.classList.toggle("open", menuOpen);
+        burger.setAttribute("aria-expanded", menuOpen);
+        const spans = burger.querySelectorAll("span");
+        if (menuOpen) {
+          spans[0].style.transform = "translateY(7px) rotate(45deg)";
+          spans[1].style.opacity = "0";
+          spans[2].style.transform = "translateY(-7px) rotate(-45deg)";
+        } else {
+          spans.forEach((s) => {
+            s.style.transform = "";
+            s.style.opacity = "";
+          });
+        }
+      });
+
+      function closeMobile() {
+        menuOpen = false;
+        navMobile.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
+        const spans = burger.querySelectorAll("span");
+        spans.forEach((s) => {
+          s.style.transform = "";
+          s.style.opacity = "";
+        });
+      }
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobile);
+      });
+
+      // Process accordion
+      const processData = [
+        {
+          emoji: "📞",
+          title: "Замовте зручним способом",
+          text: "Телефон, месенджер або форма на сайті — ми відповідаємо протягом 15 хвилин та підбираємо зручний для вас час.",
+          tag: "Крок 1 з 4",
+        },
+        {
+          emoji: "🔍",
+          title: "Огляд та підготовка",
+          text: "Майстер приїжджає вчасно, оглядає об'єм роботи та захищає делікатні поверхні перед початком чистки.",
+          tag: "Крок 2 з 4",
+        },
+        {
+          emoji: "💪",
+          title: "Глибока чистка в дії",
+          text: "Від жирового нальоту до вапняного накипу — застосовуємо правильний засіб і метод для кожного типу поверхні.",
+          tag: "Крок 3 з 4",
+        },
+        {
+          emoji: "✅",
+          title: "Гарантований результат",
+          text: "Разом перевіряємо кожен сантиметр. Не задоволені — виправляємо безкоштовно протягом 7 днів.",
+          tag: "Крок 4 з 4",
+        },
+      ];
+      
+      const processDataDE = [
+        { emoji: "📞", title: "Buchung", text: "Telefon, Messenger oder Formular — wir antworten innerhalb von 15 Minuten.", tag: "Schritt 1 von 4" },
+        { emoji: "🔍", title: "Vorbereitung", text: "Die Fachkraft kommt pünktlich an und schützt empfindliche Oberflächen.", tag: "Schritt 2 von 4" },
+        { emoji: "💪", title: "Tiefenreinigung", text: "Wir wenden das richtige Mittel für jeden Oberflächentyp an, effektiv und sicher.", tag: "Schritt 3 von 4" },
+        { emoji: "✅", title: "Garantie", text: "Nicht zufrieden? Wir beheben es kostenlos innerhalb von 7 Tagen.", tag: "Schritt 4 von 4" },
+      ];
+      
+      const processDataEN = [
+        { emoji: "📞", title: "Booking", text: "Phone, messenger, or website form — we reply within 15 minutes.", tag: "Step 1 of 4" },
+        { emoji: "🔍", title: "Preparation", text: "The specialist arrives on time and protects delicate surfaces.", tag: "Step 2 of 4" },
+        { emoji: "💪", title: "Deep cleaning", text: "We apply the right product for each surface type, effectively and safely.", tag: "Step 3 of 4" },
+        { emoji: "✅", title: "Guarantee", text: "Not satisfied? We will fix it for free within 7 days.", tag: "Step 4 of 4" },
+      ];
+
+      const steps = document.querySelectorAll(".process-step");
+      const cardEmoji = document.getElementById("processEmoji");
+      const cardTitle = document.getElementById("processCardTitle");
+      const cardText = document.getElementById("processCardText");
+      const cardTag = document.getElementById("processCardTag");
+      steps.forEach((step, i) => {
+        step.addEventListener("click", () => {
+          steps.forEach((s) => s.classList.remove("active"));
+          step.classList.add("active");
+          const lang = localStorage.getItem("cleanpro_lang");
+          const activeData = lang === "de" ? processDataDE : lang === "en" ? processDataEN : processData;
+          const d = activeData[i];
+          cardEmoji.textContent = d.emoji;
+          cardTitle.textContent = d.title;
+          cardText.textContent = d.text;
+          cardTag.textContent = d.tag;
+        });
+      });
+
+      // --- I18N (LANGUAGE SWITCHER) ---
+      const translations = {
+        en: {
+          nav_services: "Services",
+          nav_process: "How it works",
+          nav_features: "Benefits",
+          nav_reviews: "Reviews",
+          nav_cta: "Book cleaning",
+          
+          hero_tag: "<span class=\"hero-tag-dot\"></span> Professional cleaning",
+          hero_title: "Sparkling kitchen —<br><em>guaranteed</em>",
+          hero_sub: "We remove grease, limescale, and dirt from kitchen surfaces, bathrooms, refrigerators, and appliances. We use only safe cleaning products.",
+          hero_btn_primary: "Book now",
+          hero_btn_ghost: "Learn more",
+          hero_stat1: "Happy customers",
+          hero_stat2: "Years on the market",
+          hero_stat3: "Repeat bookings",
+          hero_badge1_title: "No chemicals",
+          hero_badge1_sub: "Eco-friendly",
+          hero_badge2_title: "From 2 hours",
+          hero_badge2_sub: "Fast & high quality",
+
+          sec_services_label: "What we clean",
+          sec_services_title: "Our Services",
+          sec_services_desc: "Comprehensive care for all surfaces and appliances in your kitchen and bathroom.",
+          srv1_name: "Kitchen surfaces",
+          srv1_desc: "Removal of grease deposits, soot, and stains from stoves, hobs, countertops, and tiles.",
+          srv1_price: "from 500 UAH <span>/ session</span>",
+          srv2_name: "Bathroom",
+          srv2_desc: "Elimination of limescale, rust, and mold from bathtubs, showers, toilets, and tiles.",
+          srv2_price: "from 600 UAH <span>/ session</span>",
+          srv3_name: "Refrigerator",
+          srv3_desc: "Complete defrosting and disinfection of all compartments, shelves, and seals without harsh chemicals.",
+          srv3_price: "from 350 UAH <span>/ appliance</span>",
+          srv4_name: "Dishwasher",
+          srv4_desc: "Cleaning of filters, nozzles, and inner walls. Elimination of unpleasant odors and limescale.",
+          srv4_price: "from 280 UAH <span>/ appliance</span>",
+          srv5_name: "Washing machine",
+          srv5_desc: "Cleaning of the drum, cuff, tray, and pump. Prevention of limescale and mold.",
+          srv5_price: "from 300 UAH <span>/ appliance</span>",
+          srv6_name: "Oven & Microwave",
+          srv6_desc: "Soaking and removing baked-on grease, restoring the shine of glass and surfaces.",
+          srv6_price: "from 250 UAH <span>/ appliance</span>",
+
+          proc_label: "Simple process",
+          proc_title: "How we work",
+          proc_desc: "Four steps to perfect cleanliness — with no hassle on your part.",
+          proc_s1_title: "Booking & Assessment",
+          proc_s1_desc: "You call or write to us — we quickly determine the scope of work, select specialists, and agree on a convenient time. Preliminary cost calculation immediately.",
+          proc_s2_title: "Preparation & Inspection",
+          proc_s2_desc: "The specialist arrives at the appointed time with all necessary equipment and supplies. Conducts a quick inspection to clarify priorities and protect delicate surfaces.",
+          proc_s3_title: "Deep Cleaning",
+          proc_s3_desc: "We use professional equipment and proven products that effectively remove grease, limescale, and dirt, but are safe for people and pets.",
+          proc_s4_title: "Check & Guarantee",
+          proc_s4_desc: "Together with you, we check the result. If something does not meet expectations, we fix it for free. Quality guarantee for 7 days.",
+
+          feat_label: "Our advantages",
+          feat_title: "Why choose CleanPro",
+          feat_desc: "We don't just clean — we give you time and peace of mind.",
+          feat1_title: "Eco-products",
+          feat1_desc: "We use certified products without phosphates and chlorine. Safe for children, allergy sufferers, and pets.",
+          feat2_title: "Complete safety",
+          feat2_desc: "All specialists are verified employees with official employment and insured liability.",
+          feat3_title: "Fast & High-quality",
+          feat3_desc: "Turnkey kitchen — from 2 hours. Bathroom — from 1.5 hours. We won't delay you for long.",
+          feat4_title: "7-day guarantee",
+          feat4_desc: "We will return and fix it for free if you find any flaws within a week.",
+          feat5_title: "Convenient schedule",
+          feat5_desc: "We accept orders 7 days a week, including holidays and weekends. Departure on the day of the order.",
+          feat6_title: "Convenient payment",
+          feat6_desc: "Cash, card, or online transfer — pay after the work is completed when you are convinced of the result.",
+          feat7_title: "Own equipment",
+          feat7_desc: "We bring all the inventory, brushes, nozzles, and detergents. You don't need to prepare anything in advance.",
+          feat8_title: "4 years of experience",
+          feat8_desc: "Over 500 successfully completed orders. We know how to cope with even the most difficult pollution.",
+
+          test_label: "Reviews",
+          test_title: "What our clients say",
+          test1_text: "I ordered cleaning of the refrigerator and oven. The result shocked me — everything looks brand new! The specialist worked carefully, left no trace of chemicals. Will definitely order again.",
+          test1_name: "Oksana Melnyk",
+          test1_role: "Regular client, Kyiv",
+          test2_text: "The guys did a comprehensive cleaning of the kitchen before selling the apartment. The realtor said the apartment looks much better. We sold it faster because of this. Thanks to the team!",
+          test2_name: "Andriy Kovalchuk",
+          test2_role: "Client, Kharkiv",
+          test3_text: "Limescale in the bathroom hasn't come off with anything for a year. CleanPro handled it in 2 hours! Perfect cleanliness, no smell, and most importantly — no scratches on the acrylic.",
+          test3_name: "Iryna Savchenko",
+          test3_role: "Client, Lviv",
+
+          cta_title: "Ready for perfect cleanliness?",
+          cta_desc: "Call now or write to us — and we will find a convenient time for a visit today.",
+          cta_time: "Calls daily, 8:00 AM – 9:00 PM",
+          cta_btn: "Write on Telegram",
+
+          ftr_about: "Professional cleaning of kitchens and bathrooms. Safe, fast, and with a guaranteed result.",
+          ftr_col1: "Services",
+          ftr_col2: "Company",
+          ftr_col3: "Contacts",
+          ftr_l1: "Kitchen surfaces",
+          ftr_l2: "Bathroom",
+          ftr_l3: "Refrigerator",
+          ftr_l4: "Dishwasher",
+          ftr_l5: "Washing machine",
+          ftr_l6: "Oven",
+          ftr_l7: "How we work",
+          ftr_l8: "Advantages",
+          ftr_l9: "Reviews",
+          ftr_l10: "Photo gallery",
+          ftr_l11: "Blog",
+          ftr_time: "Mon–Sun: 8:00 AM – 9:00 PM",
+          ftr_loc: "We serve Kyiv and the region",
+          ftr_copy: "© 2025 CleanPro. All rights reserved.",
+          ftr_policy: "Privacy Policy"
+        },
+        de: {
+          nav_services: "Dienstleistungen",
+          nav_process: "Arbeitsprozess",
+          nav_features: "Vorteile",
+          nav_reviews: "Bewertungen",
+          nav_cta: "Reinigung buchen",
+          
+          hero_tag: "<span class=\"hero-tag-dot\"></span> Professionelle Reinigung",
+          hero_title: "Die Küche glänzt —<br><em>garantiert</em>",
+          hero_sub: "Wir entfernen Fett, Kalk und Schmutz von Küchenoberflächen, Badezimmern, Kühlschränken und Haushaltsgeräten. Wir verwenden nur sichere Reinigungsmittel.",
+          hero_btn_primary: "Jetzt buchen",
+          hero_btn_ghost: "Mehr erfahren",
+          hero_stat1: "Zufriedene Kunden",
+          hero_stat2: "Jahre auf dem Markt",
+          hero_stat3: "Wiederkehrende Kunden",
+          hero_badge1_title: "Ohne Chemie",
+          hero_badge1_sub: "Öko-Mittel",
+          hero_badge2_title: "Ab 2 Stunden",
+          hero_badge2_sub: "Schnell & hochwertig",
+
+          sec_services_label: "Was wir reinigen",
+          sec_services_title: "Unsere Dienstleistungen",
+          sec_services_desc: "Umfassende Pflege für alle Oberflächen und Geräte in Ihrer Küche und Ihrem Badezimmer.",
+          srv1_name: "Küchenoberflächen",
+          srv1_desc: "Entfernung von Fettablagerungen, Ruß und Flecken von Herden, Kochfeldern, Arbeitsplatten und Fliesen.",
+          srv1_price: "ab 500 UAH <span>/ Sitzung</span>",
+          srv2_name: "Badezimmer",
+          srv2_desc: "Beseitigung von Kalk, Rost und Schimmel an Badewannen, Duschen, Toiletten und Fliesen.",
+          srv2_price: "ab 600 UAH <span>/ Sitzung</span>",
+          srv3_name: "Kühlschrank",
+          srv3_desc: "Vollständiges Abtauen und Desinfizieren aller Fächer, Regale und Dichtungen ohne aggressive Chemie.",
+          srv3_price: "ab 350 UAH <span>/ Gerät</span>",
+          srv4_name: "Geschirrspüler",
+          srv4_desc: "Reinigung von Filtern, Düsen und Innenwänden. Beseitigung von unangenehmen Gerüchen und Kalk.",
+          srv4_price: "ab 280 UAH <span>/ Gerät</span>",
+          srv5_name: "Waschmaschine",
+          srv5_desc: "Reinigung von Trommel, Manschette, Fach und Pumpe. Prävention gegen Kalk und Schimmel.",
+          srv5_price: "ab 300 UAH <span>/ Gerät</span>",
+          srv6_name: "Ofen & Mikrowelle",
+          srv6_desc: "Einweichen und Entfernen von eingebranntem Fett, Wiederherstellung des Glanzes von Glas und Oberflächen.",
+          srv6_price: "ab 250 UAH <span>/ Gerät</span>",
+
+          proc_label: "Einfacher Prozess",
+          proc_title: "Wie wir arbeiten",
+          proc_desc: "Vier Schritte zur perfekten Sauberkeit — ohne Aufwand für Sie.",
+          proc_s1_title: "Buchung & Bewertung",
+          proc_s1_desc: "Sie rufen an oder schreiben uns — wir klären schnell den Arbeitsumfang, wählen die Fachkräfte aus und vereinbaren einen passenden Termin. Vorab-Preiskalkulation sofort.",
+          proc_s2_title: "Vorbereitung & Inspektion",
+          proc_s2_desc: "Die Fachkraft kommt pünktlich mit allen notwendigen Geräten und Mitteln an. Führt eine schnelle Inspektion durch, um Prioritäten zu setzen und empfindliche Oberflächen zu schützen.",
+          proc_s3_title: "Tiefenreinigung",
+          proc_s3_desc: "Wir verwenden professionelle Ausrüstung und bewährte Mittel, die Fett, Kalk und Schmutz effektiv entfernen, aber für Menschen und Haustiere sicher sind.",
+          proc_s4_title: "Kontrolle & Garantie",
+          proc_s4_desc: "Wir überprüfen gemeinsam das Ergebnis. Falls etwas nicht den Erwartungen entspricht, beheben wir es kostenlos. Qualitätsgarantie für 7 Tage.",
+
+          feat_label: "Unsere Vorteile",
+          feat_title: "Warum CleanPro wählen",
+          feat_desc: "Wir reinigen nicht nur — wir geben Ihnen Zeit und Ruhe.",
+          feat1_title: "Öko-Mittel",
+          feat1_desc: "Wir verwenden zertifizierte Mittel ohne Phosphate und Chlor. Sicher für Kinder, Allergiker und Haustiere.",
+          feat2_title: "Vollständige Sicherheit",
+          feat2_desc: "Alle Fachkräfte sind geprüfte Mitarbeiter mit offizieller Anstellung und versicherter Haftpflicht.",
+          feat3_title: "Schnell & Hochwertig",
+          feat3_desc: "Küche schlüsselfertig – ab 2 Stunden. Badezimmer – ab 1,5 Stunden. Wir halten Sie nicht lange auf.",
+          feat4_title: "7 Tage Garantie",
+          feat4_desc: "Wir kommen zurück und beheben es kostenlos, falls Sie innerhalb einer Woche Mängel feststellen.",
+          feat5_title: "Flexibler Zeitplan",
+          feat5_desc: "Wir nehmen Bestellungen 7 Tage die Woche an, auch an Feiertagen und Wochenenden. Anfahrt am Tag der Bestellung möglich.",
+          feat6_title: "Bequeme Bezahlung",
+          feat6_desc: "Bargeld, Karte oder Online-Überweisung — zahlen Sie nach Abschluss der Arbeit, wenn Sie vom Ergebnis überzeugt sind.",
+          feat7_title: "Eigene Ausrüstung",
+          feat7_desc: "Wir bringen das gesamte Inventar, Bürsten, Aufsätze und Reinigungsmittel mit. Sie müssen nichts vorbereiten.",
+          feat8_title: "4 Jahre Erfahrung",
+          feat8_desc: "Über 500 erfolgreich abgeschlossene Aufträge. Wir wissen, wie wir selbst die hartnäckigsten Verschmutzungen bewältigen.",
+
+          test_label: "Bewertungen",
+          test_title: "Was unsere Kunden sagen",
+          test1_text: "Habe die Reinigung des Kühlschranks und des Ofens gebucht. Das Ergebnis hat mich schockiert — alles sieht aus wie neu! Die Fachkraft hat sauber gearbeitet, keine chemischen Rückstände. Werde auf jeden Fall wieder buchen.",
+          test1_name: "Oksana Melnyk",
+          test1_role: "Stammkundin, Kiew",
+          test2_text: "Die Jungs haben eine Komplettreinigung der Küche vor dem Verkauf der Wohnung durchgeführt. Die Maklerin sagte, dass die Wohnung viel besser aussieht. Wir haben sie dadurch schneller verkauft. Danke an das Team!",
+          test2_name: "Andriy Kovalchuk",
+          test2_role: "Kunde, Charkiw",
+          test3_text: "Kalkablagerungen im Badezimmer ließen sich seit einem Jahr nicht entfernen. CleanPro hat es in 2 Stunden geschafft! Perfekte Sauberkeit, kein Geruch und vor allem — keine Kratzer auf dem Acryl.",
+          test3_name: "Iryna Savchenko",
+          test3_role: "Kundin, Lwiw",
+
+          cta_title: "Bereit für perfekte Sauberkeit?",
+          cta_desc: "Rufen Sie jetzt an oder schreiben Sie uns — wir finden noch heute einen passenden Termin.",
+          cta_time: "Anrufe täglich, 8:00 – 21:00 Uhr",
+          cta_btn: "Auf Telegram schreiben",
+
+          ftr_about: "Professionelle Reinigung von Küchen und Bädern. Sicher, schnell und mit Ergebnisgarantie.",
+          ftr_col1: "Dienstleistungen",
+          ftr_col2: "Unternehmen",
+          ftr_col3: "Kontakte",
+          ftr_l1: "Küchenoberflächen",
+          ftr_l2: "Badezimmer",
+          ftr_l3: "Kühlschrank",
+          ftr_l4: "Geschirrspüler",
+          ftr_l5: "Waschmaschine",
+          ftr_l6: "Ofen",
+          ftr_l7: "Wie wir arbeiten",
+          ftr_l8: "Vorteile",
+          ftr_l9: "Bewertungen",
+          ftr_l10: "Fotogalerie",
+          ftr_l11: "Blog",
+          ftr_time: "Mo–So: 8:00 – 21:00",
+          ftr_loc: "Wir bedienen Kiew und die Region",
+          ftr_copy: "© 2025 CleanPro. Alle Rechte vorbehalten.",
+          ftr_policy: "Datenschutzbestimmungen"
+        }
+      };
+
+      const langBtns = document.querySelectorAll('.lang-btn');
+      let currentLang = localStorage.getItem('cleanpro_lang') || 'uk';
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('cleanpro_lang', lang);
+        document.documentElement.lang = lang;
+
+        // Оновлюємо активні кнопки
+        langBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+
+        // Перекладаємо текст
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          // Зберігаємо оригінальний український текст при першому запуску
+          if (!el.dataset.origUk) el.dataset.origUk = el.innerHTML;
+          
+          if (lang === 'uk') {
+            el.innerHTML = el.dataset.origUk;
+          } else if (translations[lang] && translations[lang][el.dataset.i18n]) {
+            el.innerHTML = translations[lang][el.dataset.i18n];
+          }
+        });
+
+        // Оновлюємо текст в активній карточці процесу (How we work)
+        const activeStep = document.querySelector('.process-step.active');
+        if (activeStep) activeStep.click();
+      }
+
+      // Слухачі для кнопок мови
+      langBtns.forEach(btn => btn.addEventListener('click', (e) => setLanguage(e.target.dataset.lang)));
+      
+      // Ініціалізація перекладу (якщо обрана не українська)
+      if (currentLang !== 'uk') setLanguage(currentLang);
+
+      // Intersection observer for animations
+      const fadeEls = document.querySelectorAll(".fade-up");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
+      fadeEls.forEach((el) => observer.observe(el));
+
+      // Smooth close mobile on resize
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) closeMobile();
+      });
+
+      // ScrollSpy для підсвічування активних пунктів меню
+      const sections = document.querySelectorAll("section[id]");
+      const allNavLinks = document.querySelectorAll(".nav-links a:not(.nav-cta), .nav-mobile a:not(.cta-mob)");
+
+      const scrollSpyOptions = {
+        root: null,
+        rootMargin: "-20% 0px -60% 0px", // Зона спрацьовування (верхня третина екрану)
+        threshold: 0
+      };
+
+      const scrollSpyObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute("id");
+            allNavLinks.forEach((link) => {
+              link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`);
+            });
+          }
+        });
+      }, scrollSpyOptions);
+
+      sections.forEach((sec) => scrollSpyObserver.observe(sec));
+    </script>
+  </body>
+</html>
